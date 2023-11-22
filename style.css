@@ -1,0 +1,14 @@
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #000000;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #d0d0d0;
+}
