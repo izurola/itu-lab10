@@ -10,7 +10,7 @@
     <input type="text" id="searchQuery" name="query">
     <button onclick="searchData()">Search</button>
     <div id="result"></div>
-    <script src="scipt.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
