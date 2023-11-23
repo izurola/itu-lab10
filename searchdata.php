@@ -4,6 +4,7 @@ session_start();
 if (isset($_SESSION['myData'])) {
     $data = $_SESSION['myData'];
 }
+
 if (isset($_GET['query'])) {
     $utga = $_GET['query'];
     $temp = null;
@@ -14,8 +15,8 @@ if (isset($_GET['query'])) {
         }
     }
     if ($temp !== null) {
-        print_r($temp);
-    }else{
+        echo json_encode($temp);
+    } else {
         echo json_encode(array('error' => 'utga baihgui baina'));
     }
 } else {
