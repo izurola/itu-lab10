@@ -1,17 +1,33 @@
 <?php
-header('Content-Type: application/json');
-session_start();
-if (isset($_SESSION['myData'])) {
-    $data = $_SESSION['myData'];
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$db = 'datas';
+$conn = mysqli_connect($servername, $username, $password, $db);
+if(!$conn) {
+    die("Connection failed: ".mysqli_connect_error());
 }
-if (isset($_GET['ind'])) {
-    $ind = $_GET['ind'];
-    if ($data[$ind] !== null) {
-        print_r($data[$ind]);
+?>
+<?php
+if(isset($_GET['id'])) {
+    $searchId = $_GET['id'];
+    $sql_data_1 = "SELECT * FROM data_1 WHERE id = $searchId";
+    $result_data_1 = $conn->query($sql_data_1);
+
+    $data = array();
+    if($result_data_1->num_rows > 0) {
+        while($row_data_1 = $result_data_1->fetch_assoc()) {
+            $data['data_1'] = $row_data_1;
+        }
+        header('Content-Type: application/json');
+        echo json_encode($data);
     } else {
-        echo json_encode(array('error' => 'utga baihgui baina'));
+        echo json_encode(array('message' => 'No results found for the provided ID'));
     }
 } else {
-    echo json_encode(array('error' => 'utga oruulna uu'));
+    echo json_encode(array('message' => 'Invalid or no ID provided'));
 }
+
+// Close connection
+$conn->close();
 ?>
